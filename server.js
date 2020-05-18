@@ -1,3 +1,5 @@
+const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const mustacheExpress = require('mustache-express');
 const puppeteer = require('puppeteer');
@@ -20,9 +22,11 @@ const generatePdf = async () => {
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/export/html', (req, res) => {
-    const data = { };
-    res.render('template.html', data);
+  const data = JSON.parse(fs.readFileSync('./data.json'));
+  res.render('template.html', data);
 });
 
 app.get('/export/pdf', (req, res) => {

@@ -2,8 +2,23 @@
 <html>
   <head>
     <title>Invoice</title>
+    <link href="/template.css" rel="stylesheet" />
   </head>
   <body>
-    <h1>Aron</h1>
+    <div id="page1" class="page portrait">
+      <section id="header">
+        <h1>INVOICE</h1>
+      </section>
+      <section id="contractor">
+        <p>{{me.name}}</p>
+        <br />
+        <p>{{me.addrLine1}}</p>
+        <p>{{me.addrLine2}}</p>
+        <p>{{me.addrLine3}}</p>
+        <br />
+        <p>ABN: {{me.abn}}</p>
+      </section>
+      <div class="divider"></div>
+    </div>
   </body>
 </html>

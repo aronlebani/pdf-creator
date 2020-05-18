@@ -1,0 +1,27 @@
+.page {
+  position: relative;
+  overflow: hidden;
+  padding: 0.8in;
+  page-break-after: always;
+}
+
+.page.landscape {
+  width: 11.7in;
+  height: 8.2in;
+}
+
+.page.portrait {
+  width: 8.3in;
+  height: 11.6in;
+}
+
+#header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.divider {
+  height: 1px;
+  background-color: black;
+}
