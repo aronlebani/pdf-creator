@@ -1,0 +1,20 @@
+{
+  "name": "@aronlebani/invoice-generator",
+  "version": "1.0.0",
+  "description": "Generate invoices using Nodejs and Puppeteer",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aronlebani/invoice-generator.git"
+  },
+  "author": "Aron Lebani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aronlebani/invoice-generator/issues"
+  },
+  "homepage": "https://github.com/aronlebani/invoice-generator#readme"
+}
