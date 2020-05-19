@@ -1,7 +1,7 @@
 # invoice-generator
 Generates pdf invoices from config data.
 
-# Usage
+## Usage
 1. Create a `config.json` file in the root directory with the following contents:
 ```
 {
@@ -9,7 +9,7 @@ Generates pdf invoices from config data.
     name,
     addrLine1,
     addrLine2,
-    addrLine3,
+    country,
   },
   client: {
     name,

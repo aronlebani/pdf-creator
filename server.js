@@ -17,7 +17,7 @@ app.get('/export/html', (req, res) => {
 });
 
 app.get('/export/pdf', (req, res) => {
-  generatePdf().then(buffer => {
+  generatePdf('http://localhost:3000/export/html').then(buffer => {
     res.set({ 'Content-Type': 'application/pdf', 'Content-Length': buffer.length });
     res.send(buffer);
   });

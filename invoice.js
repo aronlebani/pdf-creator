@@ -5,11 +5,11 @@ const formatCurrency = (amount) => {
   return `$${(Math.round(amount * 100) / 100).toFixed(2)}`;
 }
 
-const generatePdf = async () => {
+const generatePdf = async (url) => {
   const browser = await puppeteer.launch();
 
   const page = await browser.newPage();
-  await page.goto('http://localhost:3000/export/html', { waitUntil: 'networkidle0' });
+  await page.goto(url, { waitUntil: 'networkidle0' });
 
   const buffer = await page.pdf({ format: 'A4' });
 
@@ -19,7 +19,7 @@ const generatePdf = async () => {
 }
 
 const getData = (configPath) => {
-  const data = JSON.parse(fs.readFileSync('./config.json'));
+  const data = JSON.parse(fs.readFileSync(configPath));
 
   const totals = data.items.map(item => item.hours * item.rate);
   const subTotal = totals.reduce((a, b) => a + b);
