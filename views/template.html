@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Invoice</title>
-    <link href="/template.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/template.css" />
   </head>
   <body>
     <div id="page1" class="page portrait">
@@ -11,92 +11,97 @@
       </section>
       <section id="contractor">
         <p>{{me.name}}</p>
-        <br />
-        <p>{{me.addrLine1}}</p>
-        <p>{{me.addrLine2}}</p>
-        <p>{{me.addrLine3}}</p>
-        <br />
+        <p>{{me.addrLine1}}<br />{{me.addrLine2}}<br />{{me.addrLine3}}</p>
         <p>ABN: {{me.abn}}</p>
       </section>
       <div class="divider"></div>
       <section id="client">
         <table>
-          <tr>
-            <th>Client</th>
-            <th></th>
-            <th>Invoice No.</th>
-            <th>{{invoiceNo}}</th>
-          </tr>
-          <tr>
-            <td>Company:</td>
-            <td>{{client.name}}</td>
-            <td>Date:</td>
-            <td>{{date}}</td>
-          </tr>
-          <tr>
-            <td>Address:</td>
-            <td>{{client.addr}}</td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Phone:</td>
-            <td>{{client.phone}}</td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>ABN:</td>
-            <td>{{client.abn}}</td>
-            <td></td>
-            <td></td>
-          </tr>
+          <thead>
+            <tr>
+              <th class="col0 title">Client</th>
+              <th class="col1"></th>
+              <th class="col2 title">Invoice No.</th>
+              <th class="col3">{{invoiceNo}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Company:</td>
+              <td>{{client.name}}</td>
+              <td class="title">Date:</td>
+              <td>{{date}}</td>
+            </tr>
+            <tr>
+              <td>Address:</td>
+              <td>{{client.addr}}</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Phone:</td>
+              <td>{{client.phone}}</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>ABN:</td>
+              <td>{{client.abn}}</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
         </table>
       </section>
       <section id="items">
         <table>
-          <tr>
-            <th>Item</th>
-            <th>Hours</th>
-            <th>Rate</th>
-            <th>Total</th>
-          </tr>
-          {{#items}}
+          <thead>
+            <tr>
+              <th class="col0 title">Item</th>
+              <th class="col1 title">Hours</th>
+              <th class="col2 title">Rate</th>
+              <th class="col3 title">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#items}}
             <tr>
               <td>{{name}}</td>
-              <td>{{hours}}</td>
-              <td>{{rate}}</td>
-              <td>{{total}}</td>
+              <td class="number">{{hours}}</td>
+              <td class="number">{{rate}}</td>
+              <td class="number">{{total}}</td>
             </tr>
           {{/items}}
           <tr>
-            <td></td>
-            <td></td>
-            <td>Sub Total</td>
-            <td>{{subTotal}}</td>
+            <td class="no-bottom-left-border"></td>
+            <td class="no-bottom-left-border"></td>
+            <td class="title number">Sub Total</td>
+            <td class="number">{{subTotal}}</td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
-            <td>GST</td>
-            <td>{{gst}}</td>
+            <td class="no-bottom-left-border"></td>
+            <td class="no-bottom-left-border"></td>
+            <td class="title number">GST</td>
+            <td class="number">{{gst}}</td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
-            <td>Total</td>
-            <td>{{total}}</td>
+            <td class="no-bottom-left-border"></td>
+            <td class="no-bottom-left-border"></td>
+            <td class="title number">Total</td>
+            <td class="number">{{total}}</td>
           </tr>
+          </tbody>
         </table>
       </section>
       <section id="payment">
         <h2>Payment Methods</h2>
         <p>Direct Debit:</p>
-        <p>Account Name: {{payment.name}}</p>
-        <p>BSB: {{payment.bsb}}</p>
-        <p>Account Number: {{payment.accountNo}}</p>
+        <p>Account Name: {{payment.name}}<br />BSB: {{payment.bsb}}<br />Account Number: {{payment.accountNo}}</p>
         <h2>Payment Terms</h2>
         <p>Due within 14 days from the date of issue.</p>
+      </section>
+      <section id="footer">
+        <p>{{invoiceNo}}</p>
       </section>
     </div>
   </body>

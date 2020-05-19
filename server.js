@@ -19,13 +19,20 @@ const generatePdf = async () => {
   return buffer;
 }
 
+const formatCurrency = (amount) => {
+  return `$${(Math.round(amount * 100) / 100).toFixed(2)}`;
+}
+
 const deriveData = (data) => {
-  data.items.forEach(item => {
-    item.total = item.hours * item.rate;
+  const totals = data.items.map(item => item.hours * item.rate);
+  const subTotal = totals.reduce((a, b) => a + b);
+
+  data.subTotal = formatCurrency(subTotal);
+  data.gst = formatCurrency(subTotal * 0.1);
+  data.total = formatCurrency(subTotal * 1.1);
+  data.items.forEach((item, index) => {
+    item.total = formatCurrency(totals[index]);
   });
-  data.subTotal = data.items.reduce((a, b) => a.total + b.total);
-  data.gst = data.subTotal * 0.1;
-  data.total = data.subTotal * 1.1;
 
   return data;
 }
@@ -36,7 +43,7 @@ app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/export/html', (req, res) => {
-  const data = deriveData(JSON.parse(fs.readFileSync('./data.json')));
+  const data = deriveData(JSON.parse(fs.readFileSync('./config.json')));
   res.render('template.html', data);
 });
 
