@@ -19,6 +19,85 @@
         <p>ABN: {{me.abn}}</p>
       </section>
       <div class="divider"></div>
+      <section id="client">
+        <table>
+          <tr>
+            <th>Client</th>
+            <th></th>
+            <th>Invoice No.</th>
+            <th>{{invoiceNo}}</th>
+          </tr>
+          <tr>
+            <td>Company:</td>
+            <td>{{client.name}}</td>
+            <td>Date:</td>
+            <td>{{date}}</td>
+          </tr>
+          <tr>
+            <td>Address:</td>
+            <td>{{client.addr}}</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Phone:</td>
+            <td>{{client.phone}}</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>ABN:</td>
+            <td>{{client.abn}}</td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </section>
+      <section id="items">
+        <table>
+          <tr>
+            <th>Item</th>
+            <th>Hours</th>
+            <th>Rate</th>
+            <th>Total</th>
+          </tr>
+          {{#items}}
+            <tr>
+              <td>{{name}}</td>
+              <td>{{hours}}</td>
+              <td>{{rate}}</td>
+              <td>{{total}}</td>
+            </tr>
+          {{/items}}
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Sub Total</td>
+            <td>{{subTotal}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>GST</td>
+            <td>{{gst}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Total</td>
+            <td>{{total}}</td>
+          </tr>
+        </table>
+      </section>
+      <section id="payment">
+        <h2>Payment Methods</h2>
+        <p>Direct Debit:</p>
+        <p>Account Name: {{payment.name}}</p>
+        <p>BSB: {{payment.bsb}}</p>
+        <p>Account Number: {{payment.accountNo}}</p>
+        <h2>Payment Terms</h2>
+        <p>Due within 14 days from the date of issue.</p>
+      </section>
     </div>
   </body>
 </html>

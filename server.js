@@ -19,13 +19,24 @@ const generatePdf = async () => {
   return buffer;
 }
 
+const deriveData = (data) => {
+  data.items.forEach(item => {
+    item.total = item.hours * item.rate;
+  });
+  data.subTotal = data.items.reduce((a, b) => a.total + b.total);
+  data.gst = data.subTotal * 0.1;
+  data.total = data.subTotal * 1.1;
+
+  return data;
+}
+
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/export/html', (req, res) => {
-  const data = JSON.parse(fs.readFileSync('./data.json'));
+  const data = deriveData(JSON.parse(fs.readFileSync('./data.json')));
   res.render('template.html', data);
 });
 
