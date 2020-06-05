@@ -103,7 +103,7 @@ table, th, td {
 }
 
 #items .col0 {
-  width: 52%;
+  width: 36%;
 }
 
 #items .col1 {
@@ -115,6 +115,10 @@ table, th, td {
 }
 
 #items .col3 {
+  width: 16%;
+}
+
+#items .col4 {
   width: 16%;
 }
 

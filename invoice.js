@@ -21,7 +21,9 @@ const generatePdf = async (url) => {
 const getData = (configPath) => {
   const data = JSON.parse(fs.readFileSync(configPath));
 
-  const totals = data.items.map(item => item.hours * item.rate);
+  const totals = data.items.map(item => {
+    return item.hours * item.rate * (1 - item.discount / 100);
+  });
   const subTotal = totals.reduce((a, b) => a + b);
 
   data.subTotal = formatCurrency(subTotal);
