@@ -4,10 +4,13 @@ const mustacheExpress = require('mustache-express');
 
 const { generatePdf, getData } = require('./invoice');
 
+const PORT = 3000;
+
 const app = express();
 
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
+app.set('port', PORT);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -23,4 +26,6 @@ app.get('/export/pdf', (req, res) => {
   });
 });
 
-app.listen(3000);
+app.listen(app.get('port'), () => {
+  console.log(`Running on *:${app.get('port')}`)
+});

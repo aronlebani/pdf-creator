@@ -2,7 +2,7 @@ const fs = require('fs');
 const puppeteer = require('puppeteer');
 
 const formatCurrency = (amount) => {
-  return `$${(Math.round(amount * 100) / 100).toFixed(2)}`;
+  return `${(Math.round(amount * 100) / 100).toFixed(2)}`;
 }
 
 const generatePdf = async (url) => {
