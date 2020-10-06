@@ -27,8 +27,8 @@ const getData = (configPath) => {
   const subTotal = totals.reduce((a, b) => a + b);
 
   data.subTotal = formatCurrency(subTotal);
-  data.gst = formatCurrency(subTotal * 0.1);
-  data.total = formatCurrency(subTotal * 1.1);
+  data.gst = data.gstIncluded ? 'Included' : formatCurrency(subTotal * 0.1);
+  data.total = data.gstIncluded ? formatCurrency(subTotal) : formatCurrency(subTotal * 1.1);
   data.items.forEach((item, index) => {
     item.total = formatCurrency(totals[index]);
   });
