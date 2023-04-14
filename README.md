@@ -2,33 +2,33 @@
 Generates pdf invoices from config data.
 
 ## Usage
-1. Create a `config.json` file in the root directory with the following contents:
-```
+1. Create a `json` file with the following contents:
+```json
 {
-  me: {
-    name,
-    addrLine1,
-    addrLine2,
-    country,
+  "me": {
+    "name": "example",
+    "addrLine1": "1 Example Street",
+    "addrLine2": "Suburb 3056",
+    "country": "Australia"
   },
-  client: {
-    name,
-    addr,
-    phone,
-    abn,
+  "client": {
+    "name": "Example Client",
+    "addr": "",
+    "phone": "0411 111 111",
+    "abn": "11 111 111 111"
   },
-  invoiceNo,
-  date,
-  items: [{
-    name,
-    hours,
-    rate
+  "invoiceNo": "123456",
+  "date": "14/04/2023",
+  "items": [{
+    "name": "Develop website",
+    "hours": 16,
+    "rate": 40
   }],
-  payment: {
-    name,
-    bsb,
-    accountNo,
-  },
+  "payment": {
+    "name": "Account Name",
+    "bsb": "123-456",
+    "accountNo": "123456789"
+  }
 }
 ```
-2. Run the server and go to `localhost:3000/invoice/pdf` in a browser.
+2. Run the server and go to `localhost:3000/invoice/pdf?config=<path-to-config-file>.json` in a browser.

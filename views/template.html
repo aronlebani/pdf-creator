@@ -33,12 +33,6 @@
               <td>{{date}}</td>
             </tr>
             <tr>
-              <td>Address:</td>
-              <td>{{client.addr}}</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
               <td>Phone:</td>
               <td>{{client.phone}}</td>
               <td></td>
@@ -60,7 +54,6 @@
               <th class="col0 title">Item</th>
               <th class="col1 title">Qty</th>
               <th class="col2 title">Unit Cost</th>
-              <th class="col3 title">Discount %</th>
               <th class="col4 title">Total AUD</th>
             </tr>
           </thead>
@@ -70,12 +63,10 @@
               <td>{{name}}</td>
               <td class="number">{{hours}}</td>
               <td class="number">{{rate}}</td>
-              <td class="number">{{discount}}</td>
               <td class="number">{{total}}</td>
             </tr>
           {{/items}}
           <tr>
-            <td class="no-bottom-left-border"></td>
             <td class="no-bottom-left-border"></td>
             <td class="no-bottom-left-border"></td>
             <td class="title number">Sub Total</td>
@@ -84,12 +75,10 @@
           <tr>
             <td class="no-bottom-left-border"></td>
             <td class="no-bottom-left-border"></td>
-            <td class="no-bottom-left-border"></td>
             <td class="title number">GST</td>
             <td class="number">{{gst}}</td>
           </tr>
           <tr>
-            <td class="no-bottom-left-border"></td>
             <td class="no-bottom-left-border"></td>
             <td class="no-bottom-left-border"></td>
             <td class="title number">Total</td>

@@ -21,19 +21,19 @@ const generatePdf = async (url) => {
 const getData = (configPath) => {
   const data = JSON.parse(fs.readFileSync(configPath));
 
-  const totals = data.items.map(item => {
-    return item.hours * item.rate * (1 - item.discount / 100);
-  });
-  const subTotal = totals.reduce((a, b) => a + b);
+  const totals = data.items.map(item => item.hours * item.rate);
+  const subTotal = formatCurrency(totals.reduce((a, b) => a + b));
+  const gst = data.gstIncluded ? 'Included' : formatCurrency(subTotal * 0.1);
+  const total = data.gstIncluded ? formatCurrency(subTotal) : formatCurrency(subTotal * 1.1);
+  const items = data.items.map(item => ({ ...item, total: formatCurrency(item.hours * item.rate) }));
 
-  data.subTotal = formatCurrency(subTotal);
-  data.gst = data.gstIncluded ? 'Included' : formatCurrency(subTotal * 0.1);
-  data.total = data.gstIncluded ? formatCurrency(subTotal) : formatCurrency(subTotal * 1.1);
-  data.items.forEach((item, index) => {
-    item.total = formatCurrency(totals[index]);
-  });
-
-  return data;
+  return {
+    ...data,
+    subTotal,
+    gst,
+    total,
+    items,
+  };
 }
 
 module.exports = { generatePdf, getData };
