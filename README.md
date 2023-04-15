@@ -9,11 +9,11 @@ Generates pdf invoices from config data.
     "name": "example",
     "addrLine1": "1 Example Street",
     "addrLine2": "Suburb 3056",
-    "country": "Australia"
+    "country": "Australia",
+    "abn": "11 111 111 111"
   },
   "client": {
     "name": "Example Client",
-    "addr": "",
     "phone": "0411 111 111",
     "abn": "11 111 111 111"
   },
@@ -31,4 +31,4 @@ Generates pdf invoices from config data.
   }
 }
 ```
-2. Run the server and go to `localhost:3000/invoice/pdf?config=<path-to-config-file>.json` in a browser.
+2. Run the server and navigate to `http://localhost:3000/invoice/pdf?config=<path-to-config-file>.json` in a browser.
