@@ -2,8 +2,9 @@ const path = require('path');
 const express = require('express');
 const mustacheExpress = require('mustache-express');
 
-const { generatePdf, generatePdfFromString, getData } = require('./pdf');
-const { mdToHtml } = require('./md');
+const { generatePdf, generatePdfFromString } = require('./src/pdf');
+const { getData } = require('./src/invoice');
+const { mdToHtml } = require('./src/md');
 
 const PORT = 3000;
 

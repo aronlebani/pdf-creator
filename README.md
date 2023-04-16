@@ -37,7 +37,7 @@ Generates pdf invoices from config data.
 2. Run the server `npm run start`
 3. Navigate to `http://localhost:3000/invoice?config=<path-to-config-file>.json` in a browser
 
-### Generate pdf from Markdown
+### Generate pdf from markdown
 
 1. Create a `md` file
 2. Run the server `npm run start`
