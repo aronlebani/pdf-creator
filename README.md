@@ -2,6 +2,9 @@
 Generates pdf invoices from config data.
 
 ## Usage
+
+### Generate invoice
+
 1. Create a `json` file with the following contents:
 ```json
 {
@@ -31,4 +34,25 @@ Generates pdf invoices from config data.
   }
 }
 ```
-2. Run the server and navigate to `http://localhost:3000/invoice/pdf?config=<path-to-config-file>.json` in a browser.
+2. Run the server `npm run start`
+3. Navigate to `http://localhost:3000/invoice?config=<path-to-config-file>.json` in a browser
+
+### Generate pdf from Markdown
+
+1. Create a `md` file
+2. Run the server `npm run start`
+3. Navigate to `http://localhost:3000/markdown?md=<path-to-md-file>.md` in a browser
+
+You can add styling to the markdown export by adding a `style` tag to your markdown document, for example:
+```html
+<style>
+    body {
+        font-family: serif;
+        font-size: 12px;
+        line-height: 1.5;
+        width: 8.3in;
+        height: 11.6in;
+        padding: 0.8in;
+    }
+</style>
+```
