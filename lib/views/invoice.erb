@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Invoice</title>
-    <link rel="stylesheet" href="/template.css" />
+    <link rel="stylesheet" href="/invoice.css" />
   </head>
   <body>
     <div id="page1" class="page portrait">
@@ -10,9 +10,9 @@
         <h1>INVOICE</h1>
       </section>
       <section id="contractor">
-        <p>{{me.name}}</p>
-        <p>{{me.addrLine1}}<br />{{me.addrLine2}}<br />{{me.country}}</p>
-        <p>ABN: {{me.abn}}</p>
+        <p><%= me[:name] %></p>
+        <p><%= me[:addr_line_1] %><br /><%= me[:addr_line_2] %><br /><%= me[:country] %></p>
+        <p>ABN: <%= me[:abn] %></p>
       </section>
       <div class="divider"></div>
       <section id="client">
@@ -22,25 +22,25 @@
               <th class="col0 title">Client</th>
               <th class="col1"></th>
               <th class="col2 title">Invoice No.</th>
-              <th class="col3">{{invoiceNo}}</th>
+              <th class="col3"><%= invoice_no %></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Company:</td>
-              <td>{{client.name}}</td>
+              <td><%= client[:name] %></td>
               <td class="title">Date</td>
-              <td>{{date}}</td>
+              <td><%= date %></td>
             </tr>
             <tr>
               <td>Phone:</td>
-              <td>{{client.phone}}</td>
+              <td><%= client[:phone] %></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>ABN:</td>
-              <td>{{client.abn}}</td>
+              <td><%= client[:abn] %></td>
               <td></td>
               <td></td>
             </tr>
@@ -58,31 +58,31 @@
             </tr>
           </thead>
           <tbody>
-            {{#items}}
-            <tr>
-              <td>{{name}}</td>
-              <td class="number">{{hours}}</td>
-              <td class="number">{{rate}}</td>
-              <td class="number">{{total}}</td>
-            </tr>
-          {{/items}}
+            <% items.each do |item| %>
+              <tr>
+                <td><%= item[:name] %></td>
+                <td class="number"><%= item[:hours] %></td>
+                <td class="number"><%= item[:rate] %></td>
+                <td class="number"><%= item[:total] %></td>
+              </tr>
+            <% end %>
           <tr>
             <td class="no-bottom-left-border"></td>
             <td class="no-bottom-left-border"></td>
             <td class="title number">Sub Total</td>
-            <td class="number">{{subTotal}}</td>
+            <td class="number"><%= sub_total %></td>
           </tr>
           <tr>
             <td class="no-bottom-left-border"></td>
             <td class="no-bottom-left-border"></td>
             <td class="title number">GST</td>
-            <td class="number">{{gst}}</td>
+            <td class="number"><%= gst %></td>
           </tr>
           <tr>
             <td class="no-bottom-left-border"></td>
             <td class="no-bottom-left-border"></td>
             <td class="title number">Total</td>
-            <td class="number">{{total}}</td>
+            <td class="number"><%= total %></td>
           </tr>
           </tbody>
         </table>
@@ -90,12 +90,18 @@
       <section id="payment">
         <h2>Payment Methods</h2>
         <p>Direct Debit:</p>
-        <p>Account Name: {{payment.name}}<br />BSB: {{payment.bsb}}<br />Account Number: {{payment.accountNo}}</p>
+        <p>
+          Account Name: <%= payment[:name] %>
+          <br />
+          BSB: <%= payment[:bsb] %>
+          <br />
+          Account Number: <%= payment[:account_no] %>
+        </p>
         <h2>Payment Terms</h2>
         <p>Due within 30 days from the date of issue.</p>
       </section>
       <section id="footer">
-        <p>{{invoiceNo}}</p>
+        <p><%= invoice_no %></p>
       </section>
     </div>
   </body>

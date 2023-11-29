@@ -1,5 +1,6 @@
-# invoice-generator
-Generates pdf invoices from config data.
+# pdf-creator
+
+Generates pdf files from config data.
 
 ## Usage
 
