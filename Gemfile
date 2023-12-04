@@ -1,8 +1,10 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
 
-gem "commonmarker"
-gem "puppeteer"
-gem "sinatra"
-gem "puma"
-gem "json"
-gem "rake"
+source 'https://rubygems.org'
+
+gem 'commonmarker'
+gem 'json'
+gem 'puma'
+gem 'puppeteer-ruby'
+gem 'rake'
+gem 'sinatra'

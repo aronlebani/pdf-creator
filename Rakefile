@@ -1,3 +1,3 @@
 task :run do
-    ruby "lib/main.rb"
+  ruby 'lib/main.rb'
 end
