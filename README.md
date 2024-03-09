@@ -26,7 +26,7 @@ Generates pdf files from config data.
   "items": [{
     "name": "Develop website",
     "hours": 16,
-    "rate": 40
+    "rate": 3
   }],
   "payment": {
     "name": "Account Name",
@@ -35,14 +35,14 @@ Generates pdf files from config data.
   }
 }
 ```
-2. Run the server `npm run start`
-3. Navigate to `http://localhost:4567/invoice?config=<path-to-config-file>.json` in a browser. Or `curl -o out.pdf http://localhost:3000/invoice?config=<path-to-config-file>.json`.
+2. Run the server `ruby lib/main.rb`
+3. Navigate to `http://localhost:4567/invoice?config=<path-to-config-file>.json` in a browser. Or `curl -o out.pdf http://localhost:4567/invoice?config=<path-to-config-file>.json`.
 
 ### Generate pdf from markdown
 
-1. Create a `md` file
-2. Run the server `npm run start`
-3. Navigate to `http://localhost:4567/markdown?md=<path-to-md-file>.md` in a browser. Or `curl -o out.pdf http://localhost:3000/markdown?md=<path-to-md-file>.md`.
+1. Create a markdown file
+2. Run the server `ruby lib/main.rb`
+3. Navigate to `http://localhost:4567/markdown?md=<path-to-md-file>.md` in a browser. Or `curl -o out.pdf http://localhost:4567/markdown?md=<path-to-md-file>.md`.
 
 You can add styling to the markdown export by adding a `style` tag to your markdown document, for example:
 ```html

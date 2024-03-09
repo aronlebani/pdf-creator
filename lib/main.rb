@@ -81,6 +81,14 @@ module Invoice
   end
 end
 
+include Markdown
+include Invoice
+include Pdf
+
+get '/' do
+  Markdown.to_html './README.md'
+end
+
 get '/invoice/_' do
   config_path = params['config']
   model = Invoice.create_model config_path
