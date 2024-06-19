@@ -4,9 +4,24 @@ Generates pdf files from config data.
 
 ## Usage
 
+Inside the project directory, run `bundle install`. To see usage options, run:
+
+```
+ruby lib/main.rb --help
+```
+
+## Examples
+
 ### Generate invoice
 
-1. Create a `json` file with the following contents:
+To generate an invoice create a json configuration file, and run
+
+```
+ruby lib/main.rb --config=<path-to-json>
+```
+
+Example config file:
+
 ```json
 {
   "me": {
@@ -35,14 +50,14 @@ Generates pdf files from config data.
   }
 }
 ```
-2. Run the server `ruby lib/main.rb`
-3. Navigate to `http://localhost:4567/invoice?config=<path-to-config-file>.json` in a browser. Or `curl -o out.pdf http://localhost:4567/invoice?config=<path-to-config-file>.json`.
 
 ### Generate pdf from markdown
 
-1. Create a markdown file
-2. Run the server `ruby lib/main.rb`
-3. Navigate to `http://localhost:4567/markdown?md=<path-to-md-file>.md` in a browser. Or `curl -o out.pdf http://localhost:4567/markdown?md=<path-to-md-file>.md`.
+Create a markdown file and run
+
+```
+ruby lib/main.rb --md=<path-to-md>
+```
 
 You can add styling to the markdown export by adding a `style` tag to your markdown document, for example:
 ```html

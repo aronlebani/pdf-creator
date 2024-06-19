@@ -1,0 +1,26 @@
+{
+  "me": {
+    "name": "example",
+    "addrLine1": "1 Example Street",
+    "addrLine2": "Suburb 3056",
+    "country": "Australia",
+    "abn": "11 111 111 111"
+  },
+  "client": {
+    "name": "Example Client",
+    "phone": "0411 111 111",
+    "abn": "11 111 111 111"
+  },
+  "invoiceNo": "123456",
+  "date": "14/04/2023",
+  "items": [{
+    "name": "Develop website",
+    "hours": 16,
+    "rate": 3
+  }],
+  "payment": {
+    "name": "Account Name",
+    "bsb": "123-456",
+    "accountNo": "123456789"
+  }
+}

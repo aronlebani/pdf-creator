@@ -3,6 +3,135 @@
   <head>
     <title>Invoice</title>
     <link rel="stylesheet" href="/invoice.css" />
+    <style>
+      body {
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        -webkit-print-color-adjust: exact;
+      }
+
+      h1 {
+        font-size: 36px;
+        font-weight: 900;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      table {
+        table-layout: fixed;
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th {
+        font-weight: normal;
+      }
+
+      table, th, td {
+        text-align: left;
+        padding: 0px 10px;
+        border: none;
+      }
+
+      .no-bottom-left-border {
+        border: none !important;
+      }
+
+      #items th, #items td {
+        border: 1px solid black;
+      }
+
+      #items th {
+        background-color: darkgray;
+      }
+
+      #items .number {
+        text-align: right;
+      }
+
+      .page {
+        position: relative;
+        overflow: hidden;
+        padding: 0.8in;
+        page-break-after: always;
+      }
+
+      .page.landscape {
+        width: 11.7in;
+        height: 8.2in;
+      }
+
+      .page.portrait {
+        width: 8.3in;
+        height: 11.6in;
+      }
+
+      #header {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+      }
+
+      #footer {
+        position: absolute;
+        bottom: 0.8in;
+        left: 0.8in;
+        width: 8.3in;
+        border-top: 1px solid black;
+      }
+
+      .divider {
+        height: 1px;
+        background-color: black;
+      }
+
+      #client, #items, #payment {
+        margin-top: 30px;
+      }
+
+      #client .col0 {
+        width: 16%;
+      }
+
+      #client .col1 {
+        width: 52%;
+      }
+
+      #client .col2 {
+        width: 16%;
+      }
+
+      #client .col3 {
+        width: 16%;
+      }
+
+      #items .col0 {
+        width: 36%;
+      }
+
+      #items .col1 {
+        width: 16%;
+      }
+
+      #items .col2 {
+        width: 16%;
+      }
+
+      #items .col3 {
+        width: 16%;
+      }
+
+      #items .col4 {
+        width: 16%;
+      }
+
+      .title {
+        font-weight: 900;
+      }
+    </style>
   </head>
   <body>
     <div id="page1" class="page portrait">

@@ -3,8 +3,7 @@
 source 'https://rubygems.org'
 
 gem 'commonmarker'
+gem 'erb'
 gem 'json'
-gem 'puma'
+gem 'optparse'
 gem 'puppeteer-ruby'
-gem 'rake'
-gem 'sinatra'
