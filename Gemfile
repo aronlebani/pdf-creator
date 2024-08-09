@@ -4,6 +4,6 @@ source 'https://rubygems.org'
 
 gem 'commonmarker'
 gem 'erb'
-gem 'json'
 gem 'optparse'
 gem 'puppeteer-ruby'
+gem 'tomlrb'

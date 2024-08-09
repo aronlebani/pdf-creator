@@ -1,62 +1,42 @@
 # frozen_string_literal: true
 
 require 'erb'
-require 'json'
+require 'tomlrb'
 require 'optparse'
 require 'commonmarker'
 require 'puppeteer-ruby'
 
+CURRENCY = 'AUD'
+TAX_RATE = 0.1
+
+def format_currency(amount)
+  sprintf('%.2f', amount)
+end
+
 def make_invoice_model(data)
-  format_currency = ->(amount) { ((amount * 100).round / 100).to_s }
-
-  items = data['items'].map do |item|
-    { **item, total: item['hours'] * item['rate'] }
-  end
-
-  totals = data['items'].map do |item|
-    item['hours'] * item['rate']
-  end
-
-  sub_total = totals.sum
-  gst = sub_total * 0.1
-  total = data['gst_included'] ? sub_total : sub_total * 1.1
+  items = data[:items].map { |i| { **i, total: i[:hours] * i[:rate] } }
+  sub_total = data[:items].reduce(0) { |sum, i| sum + i[:hours] * i[:rate] }
+  gst = sub_total * TAX_RATE
+  total = data[:gstinclusive] ? sub_total : sub_total + gst
 
   {
-    me: {
-      name: data['me']['name'],
-      addr_line1: data['me']['addrLine1'],
-      addr_line2: data['me']['addrLine2'],
-      country: data['me']['country'],
-      abn: data['me']['abn']
-    },
-    client: {
-      name: data['client']['name'],
-      phone: data['client']['phone'],
-      abn: data['client']['abn']
-    },
-    invoice_no: data['invoiceNo'],
-    date: data['date'],
-    items: items.map do |item|
-             {
-               name: item['name'],
-               hours: item['hours'],
-               rate: item['rate'],
-               total: format_currency.call(item[:total])
-             }
-           end,
-    payment: {
-      name: data['payment']['name'],
-      bsb: data['payment']['bsb'],
-      account_no: data['payment']['accountNo']
-    },
-    sub_total: format_currency.call(sub_total),
-    gst: data['gst_included'] == true ? 'Included' : format_currency.call(gst),
-    total: format_currency.call(total)
+    **data,
+    items: items.map do |i|
+      {
+        **i,
+        rate: format_currency(i[:rate]),
+        total: format_currency(i[:total]),
+      }
+    end,
+    subtotal: format_currency(sub_total),
+    gst: data[:gstinclusive] == true ? 'Included' : format_currency(gst),
+    total: format_currency(total),
+    currency: CURRENCY,
   }
 end
 
 def invoice_html(config_path)
-  raw = JSON.parse(File.read(config_path))
+  raw = Tomlrb.parse(File.read(config_path), symbolize_keys: true)
   model = make_invoice_model(raw)
 
   ERB.new(File.read('lib/invoice.erb')).result_with_hash(model)
@@ -65,7 +45,8 @@ end
 def md_html(file_path)
   raw = File.read(file_path)
 
-  # UNSAFE allows raw HTML which allows styling by embedding <style> tags in the markdown
+  # UNSAFE allows raw HTML which allows styling by embedding <style> tags in
+  # the markdown
   CommonMarker.render_html(raw, %i[HARDBREAKS UNSAFE])
 end
 
@@ -100,12 +81,11 @@ if __FILE__ == $0
     exit 1
   end
 
-  html =
-    if options[:config]
-      invoice_html(options[:config])
-    elsif options[:md]
-      md_html(options[:md])
-    end
+  html = if options[:config]
+    invoice_html(options[:config])
+  elsif options[:md]
+    md_html(options[:md])
+  end
 
   to_pdf(html, options[:out] || 'out.pdf')
 end

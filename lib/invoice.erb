@@ -140,7 +140,7 @@
       </section>
       <section id="contractor">
         <p><%= me[:name] %></p>
-        <p><%= me[:addr_line1] %><br /><%= me[:addr_line2] %><br /><%= me[:country] %></p>
+        <p><%= me[:addrline1] %><br /><%= me[:addrline2] %><br /><%= me[:country] %></p>
         <p>ABN: <%= me[:abn] %></p>
       </section>
       <div class="divider"></div>
@@ -151,7 +151,7 @@
               <th class="col0 title">Client</th>
               <th class="col1"></th>
               <th class="col2 title">Invoice No.</th>
-              <th class="col3"><%= invoice_no %></th>
+              <th class="col3"><%= number %></th>
             </tr>
           </thead>
           <tbody>
@@ -183,13 +183,13 @@
               <th class="col0 title">Item</th>
               <th class="col1 title">Qty</th>
               <th class="col2 title">Unit Cost</th>
-              <th class="col4 title">Total AUD</th>
+              <th class="col4 title">Total</th>
             </tr>
           </thead>
           <tbody>
             <% items.each do |item| %>
               <tr>
-                <td><%= item[:name] %></td>
+                <td><%= item[:description] %></td>
                 <td class="number"><%= item[:hours] %></td>
                 <td class="number"><%= item[:rate] %></td>
                 <td class="number"><%= item[:total] %></td>
@@ -199,7 +199,7 @@
             <td class="no-bottom-left-border"></td>
             <td class="no-bottom-left-border"></td>
             <td class="title number">Sub Total</td>
-            <td class="number"><%= sub_total %></td>
+            <td class="number"><%= subtotal %></td>
           </tr>
           <tr>
             <td class="no-bottom-left-border"></td>
@@ -210,7 +210,7 @@
           <tr>
             <td class="no-bottom-left-border"></td>
             <td class="no-bottom-left-border"></td>
-            <td class="title number">Total</td>
+            <td class="title number">Total (<%= currency %>)</td>
             <td class="number"><%= total %></td>
           </tr>
           </tbody>
@@ -220,17 +220,17 @@
         <h2>Payment Methods</h2>
         <p>Direct Debit:</p>
         <p>
-          Account Name: <%= payment[:name] %>
+          Account Name: <%= payment[:accname] %>
           <br />
           BSB: <%= payment[:bsb] %>
           <br />
-          Account Number: <%= payment[:account_no] %>
+          Account Number: <%= payment[:accnumber] %>
         </p>
         <h2>Payment Terms</h2>
         <p>Due within 30 days from the date of issue.</p>
       </section>
       <section id="footer">
-        <p><%= invoice_no %></p>
+        <p><%= number %></p>
       </section>
     </div>
   </body>
