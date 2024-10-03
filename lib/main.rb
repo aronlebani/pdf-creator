@@ -24,13 +24,13 @@ def make_invoice_model(data)
     items: items.map do |i|
       {
         **i,
-        rate: format_currency i[:rate],
-        total: format_currency i[:total],
+        rate: format_currency(i[:rate]),
+        total: format_currency( i[:total]),
       }
     end,
-    subtotal: format_currency sub_total,
-    gst: data[:gstinclusive] == true ? 'Included' : format_currency gst,
-    total: format_currency total,
+    subtotal: format_currency(sub_total),
+    gst: data[:gstinclusive] == true ? 'Included' : format_currency(gst),
+    total: format_currency(total),
     currency: CURRENCY,
   }
 end
